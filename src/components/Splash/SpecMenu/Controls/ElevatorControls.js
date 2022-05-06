@@ -58,7 +58,7 @@ const ElevatorControls = ({ elevatorCount, floorCount, setCompletedSystem, setCo
     return (
         <div className="all-elevator-controls">
             {elevators.map(elevator => <ElevatorControlPanel elevatorNumber={elevator} key={elevator} floorCount={floorCount}/>)}
-            <button onClick={onReset}>Reset</button>
+            <button className='reset-button' onClick={onReset}>Reset</button>
         </div>
     )
 }

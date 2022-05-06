@@ -46,9 +46,19 @@ button.floor-button{
 }
 
 
+
 h3.elevator-state{
     color: var(--blue-000);
     font-weight: var(--header-weight);
     margin-left: 10px;
     width: 55px;
+}
+
+button.reset-button{
+    height: 50px;
+    margin-top: -20px;
+    text-align: center;
+    padding: 0px;
+    width: 100%;
+    margin-top: 20px;
 }
