@@ -1,11 +1,12 @@
 import { useState } from "react"
+import './ElevatorControls.css'
 
 const ElevatorControlPanel = ({elevatorNumber, floorCount}) => {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [editMode, setEditMode] = useState(false);
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [nextStop, setNextStop] = useState();
+    const [nextStop, setNextStop] = useState('None');
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [status, setStatus] = useState('Idle');
 
@@ -20,17 +21,17 @@ const ElevatorControlPanel = ({elevatorNumber, floorCount}) => {
             <div className="floor-button-container">
                 {buttons.map((button) => {
                     return (
-                        <span key={button} className="floor-button">{button}</span>
+                        <button key={button} className="floor-button">{button}</button>
                     )
                 })}
             </div>
             <div className="elevator-status">
                 <h3>Status</h3>
-                <div>{status}</div>
+                <h3 className="elevator-state">{status}</h3>
             </div>
-            <div className="nextStop">
+            <div className="next-stop">
                 <h3>Next Stop</h3>
-                <div>{nextStop}</div>
+                <h3 className="elevator-state">{nextStop}</h3>
             </div>
         </div>
     )
@@ -42,7 +43,7 @@ const ElevatorControls = ({ elevatorCount, floorCount }) => {
     for (let i = 0; i < elevatorCount; i++) { elevators.push(i)}
     return (
         <div className="all-elevator-controls">
-            {elevators.map(elevator => <ElevatorControlPanel elevatorNumber={elevator} floorCount={floorCount}/>)}
+            {elevators.map(elevator => <ElevatorControlPanel elevatorNumber={elevator} key={elevator} floorCount={floorCount}/>)}
         </div>
     )
 }

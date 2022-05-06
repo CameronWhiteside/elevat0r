@@ -26,6 +26,7 @@ const Splash = () => {
                     onboardingDelay={onboardingDelay}
                     offboardingDelay={offboardingDelay}
                     configurationMode={configurationMode}
+                    completedSystem={completedSystem}
                     ranks={ranks}
                 />
             </div>
@@ -52,6 +53,7 @@ const Splash = () => {
                     setRanks={setRanks}
                     configurationMode={configurationMode}
                     setConfigurationMode={setConfigurationMode}
+                    completedSystem={completedSystem}
                     setCompletedSystem={setCompletedSystem}
                 />
             </div>

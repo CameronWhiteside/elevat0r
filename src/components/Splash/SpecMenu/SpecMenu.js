@@ -7,8 +7,6 @@ import System from "../../../logic/system.js";
 import Controls from "./Controls/ControlPanel.js";
 
 
-
-
 const SpecMenu = ({
     floorCount,
     setFloorCount,
@@ -26,7 +24,8 @@ const SpecMenu = ({
     setRanks,
     configurationMode,
     setConfigurationMode,
-    setCompletedSystem
+    setCompletedSystem,
+    completedSystem
 }) => {
 
 
@@ -70,7 +69,7 @@ const SpecMenu = ({
     let floorProps = {
         id: 'floorCount',
         description: 'Floor Count',
-        max: 15,
+        max: 14,
         min: 2,
         value: floorCount,
         setValue: setFloorCount
@@ -79,7 +78,7 @@ const SpecMenu = ({
     let elevatorProps = {
         id: 'elevatorCount',
         description: 'Elevator Count',
-        max: 8,
+        max: 6,
         min: 1,
         value: elevatorCount,
         setValue: setElevatorCount
@@ -161,7 +160,7 @@ const SpecMenu = ({
             </div>
                 </>
                 :
-                <Controls/>
+                <Controls completedSystem={completedSystem}/>
         }
         </div >
     )

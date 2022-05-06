@@ -1,0 +1,49 @@
+.all-elevator-controls{
+    margin-top: -16px;
+}
+.elevator-control{
+    display: flex;
+    margin: 15px 0px;
+}
+
+.floor-button-container{
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 200px;
+    max-height: 70px;
+    margin-right: 15px;
+}
+
+button.floor-button{
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    padding: 0px;
+    margin: 0px 0px 2px 2px;
+    color: var(--blue-1000);
+    font-size: 17px;
+    background-color: var(--blue-600);
+    border-radius: 15px;
+}
+
+
+.elevator-status, .next-stop{
+    display: flex;
+    margin-left: 30px;
+}
+
+.elevator-status *,
+.next-stop *{
+    font-family: var(--header-family);
+    font-size: 25px;
+}
+
+
+h3.elevator-state{
+    color: var(--blue-000);
+    font-weight: var(--header-weight);
+    margin-left: 10px;
+    width: 55px;
+}

@@ -1,8 +1,12 @@
+import { useEffect } from 'react'
 import './ControlPanel.css'
+import ElevatorControls from './ElevatorControls.js'
 
-const Controls = ({completeSystem}) => {
+const Controls = ({ completedSystem }) => {
+
+
     return (
-        <h1>TEST TEST</h1>
+        <ElevatorControls elevatorCount={completedSystem.elevators.length} floorCount={completedSystem.floors.length}/>
     )
 }
 
