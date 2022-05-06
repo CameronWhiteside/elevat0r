@@ -1,0 +1,66 @@
+:root{
+    --blue-1000: #0f162c;
+    --blue-800: #1a1e4b;
+    --blue-600: #2a5fa2;
+    --blue-400: #4283c3;
+    --blue-200: #76aed5;
+    --blue-000: #d2e1ea;
+
+    --header-family: rift, sans-serif;
+    --header-weight: 500;
+
+    --body-family: circe-slab-c, serif;
+    --body-weight: 900;
+}
+
+html, body, div, span
+h1, h2, h3, h4, h5, h6,
+a, ol, ul, li {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+#root{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #1a1e4b;
+}
+
+h3{
+    font-family: var(--body-family);
+    font-weight: var(--body-weight);
+    color: var(--blue-400);
+    font-size: 20px;
+}
+
+.title-container{
+    margin-bottom: 30px;
+    min-width: 539px;
+}
+
+.hidden{
+    display: none;
+}
+
+.title-image{
+    width: 500px;
+    height: 180px;
+    background-image: url('/public/assets/elevator-logo.svg');
+    background-repeat: no-repeat;
+}
+
+.column{
+    max-width: 550px;
+}

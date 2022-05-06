@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import Building from './components/Building.js';
+import Splash from './components/Splash/Splash.js';
+
+// NOTE: env vars are always string, must be converted to number
+const BANKS = process.env.BANKS || '3';
+const FLOORS = process.env.FLOORS || '5';
+// const TICK_DELAY = process.env.TICK_DELAY || '1000';
 
 function App() {
+  const banks = parseInt(BANKS, 10);
+  const floors = parseInt(FLOORS, 10);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Splash/>
+    </>
   );
 }
 

@@ -1,0 +1,6 @@
+.floor-divider{
+    height: 2px;
+    position: absolute;
+    background-color: var(--blue-800);
+    width: 100%;
+}

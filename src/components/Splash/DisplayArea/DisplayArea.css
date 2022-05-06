@@ -1,0 +1,24 @@
+.building{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    height: 700px;
+    margin: 100px;
+}
+
+
+.left-panel{
+    width: 45px;
+    height: 610px;
+    background-image: url('/public/assets/building-side.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.main-building{
+    width: 400px;
+    height: 600px;
+    background-color: var(--blue-400);
+    border: 5px solid var(--blue-1000);
+    position: relative;
+}

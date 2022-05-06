@@ -1,0 +1,29 @@
+.floor-controls{
+    position: absolute;
+    right: -35px;
+    width: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-button{
+    width: 22px;
+    height: 22px;
+    margin: 2px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center bottom;
+}
+
+.up-active-true, .down-active-true{
+    background-image: url('/public/assets/selected-arrow.svg');
+}
+.up-active-false, .down-active-false{
+    background-image: url('/public/assets/unselected-arrow.svg');
+}
+
+.down-button{
+    transform: rotate(180deg);
+}
