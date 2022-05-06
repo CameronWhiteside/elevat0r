@@ -1,18 +1,18 @@
 import { useState } from "react"
 import './FloorControls.css'
 
-const FloorControls = ({level, height, firstLevel, lastLevel}) => {
+const FloorControls = ({level, height, firstLevel, lastLevel, completedSystem}) => {
     const [upActive, setUpActive] = useState(false)
     const [downActive, setdownActive] = useState(false)
 
     const onUpClick = () => {
         setUpActive(true)
-        console.log(`Going up on floor ${level}`)
+        completedSystem.requestElevator(1, level)
     }
 
     const onDownClick = () => {
         setdownActive(true)
-        console.log(`Going down on floor ${level}`)
+        completedSystem.requestElevator(-1, level)
     }
 
     return (

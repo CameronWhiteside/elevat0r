@@ -1,5 +1,5 @@
 import { useState } from "react"
-import System from "../../../../logic/system.js";
+import System from "../../../../../logic/system.js";
 import './ElevatorControls.css'
 
 const ElevatorControlPanel = ({elevatorNumber, floorCount}) => {
@@ -46,9 +46,10 @@ const ElevatorControlPanel = ({elevatorNumber, floorCount}) => {
 
 }
 
-const ElevatorControls = ({ elevatorCount, floorCount, setCompletedSystem, setConfigureMode }) => {
+const ElevatorControls = ({ elevatorCount, floorCount, completedSystem, setCompletedSystem, setConfigureMode }) => {
 
     const onReset = () => {
+        completedSystem.intervals.forEach(interval => clearInterval(interval))
         setCompletedSystem(new System(5, 2, 2, 2, 2, 2, {}))
         setConfigureMode(true)
     }

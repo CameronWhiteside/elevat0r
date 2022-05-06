@@ -1,17 +1,17 @@
 import Floors from './Floors/Floors.js'
-import FloorControls from '../SpecMenu/Controls/FloorControls/FloorControls.js'
 import Elevators from './Elevators/Elevators.js'
 import './DisplayArea.css'
 
 const DisplayArea = (
-    {   floorCount,
+    { floorCount,
         elevatorCount,
         speed,
         computationInterval,
         onboardingDelay,
         offboardingDelay,
         ranks,
-        configurationMode
+        configurationMode,
+        completedSystem
     }
 ) => {
 
@@ -20,8 +20,12 @@ const DisplayArea = (
     <div className='building'>
         <div className='left-panel'></div>
             <div className='main-building'>
-                <Floors floorCount={floorCount} configurationMode={configurationMode}/>
-                <Elevators elevatorCount={elevatorCount}/>
+                <Floors
+                    floorCount={floorCount}
+                    configurationMode={configurationMode}
+                    completedSystem={completedSystem}
+                />
+                <Elevators elevatorCount={elevatorCount} completedSystem={completedSystem}/>
                 <div className='button-container'>
 
                 </div>

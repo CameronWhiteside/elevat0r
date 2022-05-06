@@ -48,6 +48,8 @@ const SpecMenu = ({
             energyWeight
         }
 
+        if(completedSystem.intervals) completedSystem.intervals.forEach(interval => clearInterval(interval))
+
         let newSystem = new System(
             floorCount,
             elevatorCount,
@@ -57,8 +59,6 @@ const SpecMenu = ({
             offboardingDelay,
             weights
         )
-
-        console.log(newSystem)
 
         setCompletedSystem(newSystem)
         setConfigurationMode(false)

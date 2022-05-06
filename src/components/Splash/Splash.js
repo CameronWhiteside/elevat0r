@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SpecMenu from './SpecMenu/SpecMenu.js';
 import DisplayArea from './DisplayArea/DisplayArea.js'
 import './Splash.css'

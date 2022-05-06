@@ -1,7 +1,7 @@
 import FloorControls from '../../SpecMenu/Controls/FloorControls/FloorControls.js'
 import './Floors.css'
 
-const Floors = ({ floorCount, configurationMode }) => {
+const Floors = ({ floorCount, configurationMode, completedSystem }) => {
     let floors = []
     for (let i = 0; i < floorCount; i++)
         floors.push(600/floorCount * i)
@@ -18,7 +18,7 @@ const Floors = ({ floorCount, configurationMode }) => {
                                 bottom: `${qty}px`
                             }}
                             >
-                            {!configurationMode && <FloorControls level={i} firstLevel={0} lastLevel={floorCount - 1} height={600 / floorCount} />}
+                            {!configurationMode && <FloorControls level={i} firstLevel={0} lastLevel={floorCount - 1} height={600 / floorCount} completedSystem={completedSystem} />}
                             </div>
                     )
                 })

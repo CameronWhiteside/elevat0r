@@ -10,18 +10,25 @@ export default class System {
         speed,
         onboard,
         offboard,
-        weights
+        weights,
     ) {
 
         this.elevators = []
+        this.intervals = []
 
         for (let i = 0; i < bankCount; i++) {
 
             let elevator = new Elevator(i, floorCount, weights, tick, speed, onboard, offboard)
             this.elevators.push(elevator)
-            setInterval(() => {
-                elevator.udpatePosition()
-            }, 1000 / tick)
+            this.intervals.push(setInterval(() => {
+                elevator.updatePosition()
+                // console.log(elevator.position)
+                let pageElevator = document.getElementById(`elevator-${i}`)
+                pageElevator.style.bottom = `${ elevator.position / floorCount * 600 }px`;
+                // console.log(pageElevator.style.bottom)
+
+                // console.log(elevator)
+            }, 1000 / tick))
         }
 
         this.floors = []
@@ -70,6 +77,7 @@ export default class System {
 
 
     requestElevator(direction, level) {
+        console.log(`requesting level ${level} and going ${direction}`)
         let floor = this.floors[level]
         let button = floor.getButton(direction)
         button.activate()
@@ -83,15 +91,4 @@ export default class System {
 }
 
 
-let myBuilding =  new System (
-        10,
-        2,
-        10,
-        4,
-        2,
-        2,
-        { waitWeight: 2, stopsWeight: 1, changesWeight: 1, energyWeight: 4 }
-)
-
-myBuilding.requestElevator(1, 8)
 // console.log(myBuilding)

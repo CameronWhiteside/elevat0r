@@ -138,7 +138,7 @@ export default class Elevator {
             this.stops.insert(index, 'pickup', dropOff.floor.level)
         }
 
-        udpatePosition() {
+        updatePosition() {
             let nextPosition = this.position
             // console.log(this.stops.head)
             if (this.stops.head && this.stops.head.level) {
