@@ -117,15 +117,19 @@ export default class Elevator {
         }
 
     calculateRequestScore(request) {
-            // console.log(request)
-            let { waitWeight, stopsWeight, changesWeight, energyWeight } = this.weights
-            let optimalStop = this.calculateStopAddition(request)
-            return [
+        // console.log(request)
+        let { waitWeight, stopsWeight, changesWeight, energyWeight } = this.weights
+        let optimalStop = this.calculateStopAddition(request)
+        console.log({optimalStop})
+            let result = [
                     this.calculateWaitTime(optimalStop) * waitWeight,
                     this.calculateStopsToDropoff(optimalStop) * stopsWeight,
                     this.calculateDirectionChanges(optimalStop) * changesWeight,
-                    this.calculateWaitTime(request) * energyWeight
+                    this.calculateWaitTime(optimalStop) * energyWeight
             ].reduce((a, e) => a + e)
+
+            console.log(result)
+            return result
         }
 
         assignRequest(request) {
@@ -135,15 +139,16 @@ export default class Elevator {
 
         assignDropOff(dropOff) {
             let { index } = this.calculateStopAddition(dropOff)
-            this.stops.insert(index, 'pickup', dropOff.floor.level)
+            console.log(dropOff)
+            this.stops.insert(index, 'pickup', dropOff.floor)
+            // console.log(`stops updated at index ${index}`, this.stops)
         }
 
         updatePosition() {
-            let nextPosition = this.position
-            // console.log(this.stops.head)
+             // console.log(this.stops.head)
             if (this.stops.head && this.stops.head.level) {
                 //check to see if already at nextPosition
-                if (nextPosition === this.stops.head.level) {
+                if (this.position === this.stops.head.level) {
                     if (this.direction !== 0) {
                         //specify speed to zero
                         this.direction = 0
@@ -153,19 +158,28 @@ export default class Elevator {
                             delay = this.dropOffDelay;
                         } else if (this.stops.head.type === 'pickup') {
                             delay = this.dropOffDelay;
+                            console.log('delay', delay)
                         }
 
                         setTimeout(() => {
+                            console.log(`scheduling next step in ${delay} delay`)
                             this.stops.remove(0)
-                            this.direction = Math.abs(this.stops.head.level - this.position) / (this.stops.head.level - this.position)
+                            console.log(this.stops)
+                            this.direction = 0
+                            if (this.stops.head && this.stops.head.level) {
+                                this.direction = Math.abs(this.stops.head.level - this.position) / (this.stops.head.level - this.position)
+                            }
                         }, delay * 1000)
 
                     }
                 } else {
-                    // let distanceToNext = this.position - this.stops.head.level
+                    console.log('not there yet')
+
                     let distanceToNext = this.stops.head.level - this.position
+                    if (distanceToNext) {
+                        this.direction = Math.abs(distanceToNext) / distanceToNext
+                    }
                     let projectedDistance = Math.abs(distanceToNext) / distanceToNext * this.speed / this.tick
-                    // console.log(projectedDistance)
                     if (Math.abs(projectedDistance) > Math.abs(distanceToNext)) {
                         this.position = this.stops.head.level
                     } else {

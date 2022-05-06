@@ -22,12 +22,8 @@ export default class System {
             this.elevators.push(elevator)
             this.intervals.push(setInterval(() => {
                 elevator.updatePosition()
-                // console.log(elevator.position)
                 let pageElevator = document.getElementById(`elevator-${i}`)
                 pageElevator.style.bottom = `${ elevator.position / floorCount * 600 }px`;
-                // console.log(pageElevator.style.bottom)
-
-                // console.log(elevator)
             }, 1000 / tick))
         }
 
@@ -63,12 +59,16 @@ export default class System {
         })
 
         let chosenElevator = rankings.reduce((acc, el) => {
-            if (acc.score < el.score) {
-                return el
-            } else {
+
+            console.log(`Comparing ${acc.score} and ${el.score}`)
+            if (acc.score <= el.score) {
                 return acc
+            } else {
+                return el
             }
         }).elevator
+
+        console.log(`Thats for elevator ${chosenElevator.id}.`)
 
         chosenElevator.assignRequest(request)
 

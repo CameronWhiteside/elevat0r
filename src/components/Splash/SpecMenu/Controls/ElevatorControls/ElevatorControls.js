@@ -1,8 +1,10 @@
 import { useState } from "react"
 import System from "../../../../../logic/system.js";
 import './ElevatorControls.css'
+import { DropOff } from "../../../../../logic/request.js";
 
-const ElevatorControlPanel = ({elevatorNumber, floorCount}) => {
+const ElevatorControlPanel = ({elevatorNumber, floorCount, completedSystem}) => {
+
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [nextStop, setNextStop] = useState('None');
@@ -15,8 +17,9 @@ const ElevatorControlPanel = ({elevatorNumber, floorCount}) => {
         buttons.push(i)
     }
 
-    const selectButton = (elevatorNumber, floorNumber) => {
+    const selectButton = (elevatorNumber, floorNumber, completedSystem) => {
         console.log(`selecting floor ${floorNumber} for elevator ${elevatorNumber}`)
+        completedSystem.elevators[elevatorNumber].assignDropOff(new DropOff(floorNumber))
     }
 
 
@@ -25,9 +28,10 @@ const ElevatorControlPanel = ({elevatorNumber, floorCount}) => {
         <div className="elevator-control">
             <div className="floor-button-container">
                 {buttons.map((button) => {
+
                     return (
                         <button key={button} onClick={(e) => {
-                            selectButton(elevatorNumber, button)
+                            selectButton(elevatorNumber, button, completedSystem)
                             e.target.classList.add('active-floor')
                         }} className="floor-button">{button}</button>
                     )
@@ -58,7 +62,7 @@ const ElevatorControls = ({ elevatorCount, floorCount, completedSystem, setCompl
     for (let i = 0; i < elevatorCount; i++) { elevators.push(i)}
     return (
         <div className="all-elevator-controls">
-            {elevators.map(elevator => <ElevatorControlPanel elevatorNumber={elevator} key={elevator} floorCount={floorCount}/>)}
+            {elevators.map(elevator => <ElevatorControlPanel completedSystem={completedSystem} elevatorNumber={elevator} key={elevator} floorCount={floorCount}/>)}
             <button className='reset-button' onClick={onReset}>Reset</button>
         </div>
     )

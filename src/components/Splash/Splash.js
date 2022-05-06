@@ -10,9 +10,9 @@ const Splash = () => {
     const [floorCount, setFloorCount] = useState(5)
     const [elevatorCount, setElevatorCount] = useState(2)
     const [speed, setSpeed] = useState(2)
-    const [computationInterval, setComputationInterval] = useState(2)
-    const [onboardingDelay, setOnboardingDelay] = useState(2)
-    const [offboardingDelay, setOffboardingDelay] = useState(2)
+    const [computationInterval, setComputationInterval] = useState(20)
+    const [onboardingDelay, setOnboardingDelay] = useState(1)
+    const [offboardingDelay, setOffboardingDelay] = useState(1)
     const [ranks, setRanks] = useState(['Shortest Wait Time', 'Minimal Direction Change', 'Fewest Stops', 'Energy Efficiency'])
 
     return (
