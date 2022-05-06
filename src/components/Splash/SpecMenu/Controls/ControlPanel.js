@@ -2,11 +2,15 @@ import { useEffect } from 'react'
 import './ControlPanel.css'
 import ElevatorControls from './ElevatorControls.js'
 
-const Controls = ({ completedSystem }) => {
+const Controls = ({ completedSystem, setCompletedSystem, setConfigureMode }) => {
 
 
     return (
-        <ElevatorControls elevatorCount={completedSystem.elevators.length} floorCount={completedSystem.floors.length}/>
+        <>
+            {
+                <ElevatorControls setCompletedSystem={setCompletedSystem} setConfigureMode={setConfigureMode} elevatorCount={completedSystem.elevators.length} floorCount={completedSystem.floors.length} />
+            }
+            </>
     )
 }
 

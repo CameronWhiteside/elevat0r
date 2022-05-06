@@ -28,6 +28,11 @@ button.floor-button{
     border-radius: 15px;
 }
 
+.floor-button.active-floor{
+    background-color: var(--blue-000);
+    color: var(--blue-600);
+}
+
 
 .elevator-status, .next-stop{
     display: flex;

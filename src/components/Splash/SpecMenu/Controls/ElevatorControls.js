@@ -1,10 +1,9 @@
 import { useState } from "react"
+import System from "../../../../logic/system.js";
 import './ElevatorControls.css'
 
 const ElevatorControlPanel = ({elevatorNumber, floorCount}) => {
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [editMode, setEditMode] = useState(false);
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [nextStop, setNextStop] = useState('None');
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -16,12 +15,21 @@ const ElevatorControlPanel = ({elevatorNumber, floorCount}) => {
         buttons.push(i)
     }
 
+    const selectButton = (elevatorNumber, floorNumber) => {
+        console.log(`selecting floor ${floorNumber} for elevator ${elevatorNumber}`)
+    }
+
+
+
     return (
         <div className="elevator-control">
             <div className="floor-button-container">
                 {buttons.map((button) => {
                     return (
-                        <button key={button} className="floor-button">{button}</button>
+                        <button key={button} onClick={(e) => {
+                            selectButton(elevatorNumber, button)
+                            e.target.classList.add('active-floor')
+                        }} className="floor-button">{button}</button>
                     )
                 })}
             </div>
@@ -38,12 +46,19 @@ const ElevatorControlPanel = ({elevatorNumber, floorCount}) => {
 
 }
 
-const ElevatorControls = ({ elevatorCount, floorCount }) => {
+const ElevatorControls = ({ elevatorCount, floorCount, setCompletedSystem, setConfigureMode }) => {
+
+    const onReset = () => {
+        setCompletedSystem(new System(5, 2, 2, 2, 2, 2, {}))
+        setConfigureMode(true)
+    }
+
     let elevators = []
     for (let i = 0; i < elevatorCount; i++) { elevators.push(i)}
     return (
         <div className="all-elevator-controls">
             {elevators.map(elevator => <ElevatorControlPanel elevatorNumber={elevator} key={elevator} floorCount={floorCount}/>)}
+            <button onClick={onReset}>Reset</button>
         </div>
     )
 }

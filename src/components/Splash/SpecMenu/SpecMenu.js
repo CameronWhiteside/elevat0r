@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { arrayMoveImmutable } from 'array-move';
 import SortableList from './RankList/SortableList.js';
 import ToggleItem from "./ToggleItem/ToggleItem.js"
@@ -27,7 +27,6 @@ const SpecMenu = ({
     setCompletedSystem,
     completedSystem
 }) => {
-
 
     const onSortEnd = ({ oldIndex, newIndex }) => {
         setRanks(prevItem => (arrayMoveImmutable(prevItem, oldIndex, newIndex)));
@@ -160,7 +159,11 @@ const SpecMenu = ({
             </div>
                 </>
                 :
-                <Controls completedSystem={completedSystem}/>
+                <Controls
+                    completedSystem={completedSystem}
+                    setCompletedSystem={setCompletedSystem}
+                    setConfigureMode={setConfigurationMode}
+                />
         }
         </div >
     )
