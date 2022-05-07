@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
 import { arrayMoveImmutable } from 'array-move';
-import SortableList from './RankList/SortableList.js';
-import ToggleItem from "./ToggleItem/ToggleItem.js"
-import './SpecMenu.css'
-import System from "../../../logic/system.js";
-import Controls from "./Controls/ControlPanel.js";
+import SortableList from './optimizationList/SortableList.js';
+import ToggleItem from "./controlledInputs/ToggleItem.js"
+import './SystemGenerator.css'
+import System from "../../../models/system.js";
+import Controls from "./panels/ControlPanel.js";
 
 
-const SpecMenu = ({
+const SystemGenerator = ({
     floorCount,
     setFloorCount,
     elevatorCount,
@@ -169,4 +169,4 @@ const SpecMenu = ({
     )
 }
 
-export default SpecMenu
+export default SystemGenerator

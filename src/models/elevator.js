@@ -130,17 +130,37 @@ export default class Elevator {
 
             // console.log(result)
             return result
-        }
+    }
+
+
 
         assignRequest(request) {
             let { index } = this.calculateStopAddition(request)
-            this.stops.insert(index, 'pickup', request.floor.level, request.button.direction)
+            let level = request.floor.level
+            if (this.position !== level) {
+                this.stops.insert(index, 'pickup', level, request.button.direction)
+            } else {
+
+                let direction = request.button.direction === 1 ? 'up' : 'down'
+                let button = document.getElementById(`${direction}-${level}`)
+                button.classList.remove(`active`)
+            }
         }
 
         assignDropOff(dropOff) {
             let { index } = this.calculateStopAddition(dropOff)
             // console.log(dropOff)
-            this.stops.insert(index, 'dropoff', dropOff.floor)
+            if (this.position !== dropOff.floor) {
+                this.stops.insert(index, 'dropoff', dropOff.floor)
+            } else {
+                let button = document.getElementById(`button-${dropOff.floor}-${this.id}`)
+                console.log(`${dropOff.floor}-${this.id}`)
+                console.log(button.classList)
+                button.classList.remove("active-floor")
+                button.classList.remove("active-floor")
+                button.classList.remove("active-floor")
+                console.log(button.classList)
+            }
             // console.log(`stops updated at index ${index}`, this.stops)
         }
 
@@ -155,22 +175,27 @@ export default class Elevator {
             nextStopText.innerHTML = nextFloor
         }
 
+        const deactivateButtons = () => {
+            let level = this.position
+            let stopType = this.stops.head.type
+            if (stopType === 'dropoff') {
+                    let button = document.getElementById(`button-${level}-${this.id}`)
+                    button.classList.remove('active-floor')
+                } else if (stopType === 'pickup') {
+                    let direction = (this.stops.head.direction > 0) ? 'up' : 'down'
+                    let button = document.getElementById(`${direction}-${level}`)
+                    if (button) {
+                        button.classList.remove(`active`)
+                    }
+               }
+        }
+
         updateNextFloor()
 
         if (this.stops.head && this.stops.head.level !== undefined) {
-                //check to see if already at nextPosition
-                if (this.position === this.stops.head.level) {
-                    let level = this.position
-                    if (this.stops.head.type === 'dropoff') {
-                        let button = document.getElementById(`button-${level}-${this.id}`)
-                        button.classList.remove('active-floor')
-                    } else {
-                        let direction = (this.stops.head.direction > 0) ? 'up' : 'down'
-                        let button = document.getElementById(`${direction}-${level}`)
-                        if (button) {
-                            button.classList.remove(`active`)
-                        }
-                    }
+            //check to see if already at nextPosition
+            if (this.position === this.stops.head.level) {
+                deactivateButtons()
                     if (this.direction !== 0) {
                         //if elevator was in motion
                         this.direction = 0
@@ -192,6 +217,7 @@ export default class Elevator {
 
                     } else {
                         this.direction = 0
+                        // this.stops.remove(0)
                     }
                 } else {
 
@@ -209,8 +235,9 @@ export default class Elevator {
                     }
 
                 }
-            } else {
-            }
+        } else {
+
+        }
             return this.position
         }
     }

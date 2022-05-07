@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import SpecMenu from './SpecMenu/SpecMenu.js';
-import DisplayArea from './DisplayArea/DisplayArea.js'
+import { useState } from 'react';
+import SpecMenu from './controls/SystemGenerator.js';
+import DisplayArea from './buildingAnimation/DisplayArea.js'
 import './Splash.css'
 
 const Splash = () => {

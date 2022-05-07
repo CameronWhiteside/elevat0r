@@ -1,8 +1,23 @@
-# Getting Started with Create React App
+# Elevat0r
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This single page React application introduces an simulation of a working elevator system with
 
-## Available Scripts
+## Getting Started
+This project can be run locally using `npm run` from the root directory of this repository. This repository is also live-hosted at [elevat0r.com](http://elevat0r.com)
+
+## Technology Usage
+Elevat0r was built with `Create React App` and utilizes React 18 with functional components in order to construct a single-page application. An elevator system can be created through controlled inputs, with a visualization updating live.
+
+useState was used significantly throughout the application to manage state variables and re-render illustrations based on the users input for system design.
+
+Data is preserved through Javascript composition of a single Systems class which is composed of several nested objects representative of Elevators, Floors, Buttons, Pickups, Requests, and Stop Lists.
+
+Additional opportunities to refactor code remain to better utilize the React Framework
+* If given more time, elevator systems would be held within a useContext instance in order to encourage readability and prevent excessive prop drilling
+* The asynchronous nature of updating elevator locations should be handled via React and integration of a useEffect. Instead, it was handled by VanillaJS DOM manipulation built directly into the data layer, which allowed for fast calculations, but violated React's best practices for design patterns.
+
+## Design Rationale
+## Minimizing Complexity
 
 In the project directory, you can run:
 

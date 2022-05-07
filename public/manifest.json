@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Elevat0r",
+  "name": "Dynamic Elevator System Simulator",
   "icons": [
     {
       "src": "favicon.ico",

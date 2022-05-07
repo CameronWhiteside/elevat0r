@@ -1,5 +1,5 @@
 import Building from './components/Building.js';
-import Splash from './components/Splash/Splash.js';
+import Splash from './components/elevatorSystem/Splash.js';
 
 // NOTE: env vars are always string, must be converted to number
 const BANKS = process.env.BANKS || '3';

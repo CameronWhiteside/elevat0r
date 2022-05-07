@@ -1,4 +1,3 @@
-import { Request } from "./request.js";
 export default class Button {
     constructor(direction) {
         this.direction = direction;

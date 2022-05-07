@@ -1,4 +1,4 @@
-import FloorControls from '../../SpecMenu/Controls/FloorControls/FloorControls.js'
+import FloorControls from '../../controls/panels/FloorControls/FloorControls.js'
 import './Floors.css'
 
 const Floors = ({ floorCount, configurationMode, completedSystem }) => {

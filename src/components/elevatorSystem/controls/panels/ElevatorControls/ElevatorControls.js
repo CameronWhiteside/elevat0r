@@ -1,7 +1,7 @@
 import { useState } from "react"
-import System from "../../../../../logic/system.js";
+import System from "../../../../../models/system.js";
 import './ElevatorControls.css'
-import { DropOff } from "../../../../../logic/request.js";
+import { DropOff } from "../../../../../models/request.js";
 
 const ElevatorControlPanel = ({elevatorNumber, floorCount, completedSystem, floorNumber}) => {
 
@@ -26,7 +26,9 @@ const ElevatorControlPanel = ({elevatorNumber, floorCount, completedSystem, floo
                     return (
                         <button key={button} id={`button-${button}-${floorNumber}`}onClick={(e) => {
                             selectButton(elevatorNumber, button, completedSystem)
-                            e.target.classList.add('active-floor')
+                            if (completedSystem.elevators[elevatorNumber].position !== button) {
+                                e.target.classList.add('active-floor')
+                            }
                         }} className="floor-button">{button}</button>
                     )
                 })}

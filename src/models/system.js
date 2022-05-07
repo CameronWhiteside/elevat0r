@@ -75,7 +75,6 @@ export default class System {
 
 
     requestElevator(direction, level) {
-        console.log(`requesting level ${level} and going ${direction}`)
         let floor = this.floors[level]
         let button = floor.getButton(direction)
         button.activate()

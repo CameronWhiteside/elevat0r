@@ -1,4 +1,4 @@
-import System from "../logic/system.js"
+import System from "../models/system.js"
 import { useState } from "react";
 export default function Building({defaultBanks, defaultFloors}) {
   const [banks, setBanks] = useState(defaultBanks)
