@@ -5,11 +5,6 @@ import './DisplayArea.css'
 const DisplayArea = (
     { floorCount,
         elevatorCount,
-        speed,
-        computationInterval,
-        onboardingDelay,
-        offboardingDelay,
-        ranks,
         configurationMode,
         completedSystem
     }
@@ -25,7 +20,7 @@ const DisplayArea = (
                     configurationMode={configurationMode}
                     completedSystem={completedSystem}
                 />
-                <Elevators elevatorCount={elevatorCount} completedSystem={completedSystem}/>
+                <Elevators elevatorCount={elevatorCount}/>
                 <div className='button-container'>
 
                 </div>

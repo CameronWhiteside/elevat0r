@@ -19,6 +19,7 @@ export default class Elevator {
     }
 
     calculateStopAddition(request) {
+        console.log(request)
 
         let intendedDirection = 0
 
@@ -26,11 +27,16 @@ export default class Elevator {
             intendedDirection = request.button.direction //request property
         }
 
-        let targetLevel = request.floor.level //request property
+        let targetLevel
+        if (request.floor.level) {
+            targetLevel = request.floor.level //request property
+        } else {
+            targetLevel = request.floor
+        }
 
-        let currPosition = this.position //reassign through iteration
-        let currDirection = this.direction //reassign through iteration
-        let nextStop = this.stops.head //reassign through iteration
+        let currPosition = this.position //will reassign through iteration
+        let currDirection = this.direction //will reassign through iteration
+        let nextStop = this.stops.head //will reassign through iteration
 
         let result = { //format result for use in weighted calculations
             index: 0,
@@ -149,6 +155,7 @@ export default class Elevator {
 
         assignDropOff(dropOff) {
             let { index } = this.calculateStopAddition(dropOff)
+            console.log({index})
             // console.log(dropOff)
             if (this.position !== dropOff.floor) {
                 this.stops.insert(index, 'dropoff', dropOff.floor)
@@ -172,7 +179,7 @@ export default class Elevator {
             if (this.stops.head && this.stops.head.level !== undefined) {
                 nextFloor = this.stops.head.level
             }
-            nextStopText.innerHTML = nextFloor
+            if(nextStopText) nextStopText.innerHTML = nextFloor
         }
 
         const deactivateButtons = () => {
@@ -231,7 +238,6 @@ export default class Elevator {
                         this.position = this.stops.head.level
                     } else {
                         this.position += projectedDistance
-                        console.log(this.position)
                     }
 
                 }

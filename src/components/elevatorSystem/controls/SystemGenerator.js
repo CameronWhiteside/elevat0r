@@ -68,7 +68,7 @@ const SystemGenerator = ({
     let floorProps = {
         id: 'floorCount',
         description: 'Floor Count',
-        max: 14,
+        max: 22,
         min: 2,
         value: floorCount,
         setValue: setFloorCount

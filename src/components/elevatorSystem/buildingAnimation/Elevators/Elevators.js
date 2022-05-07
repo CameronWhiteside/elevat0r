@@ -1,8 +1,7 @@
 import './Elevators.css'
 
-const Elevators = ({ elevatorCount, completedSystem }) => {
+const Elevators = ({ elevatorCount}) => {
     let elevators = []
-
     for (let i = 0; i < elevatorCount; i++) {
         elevators.push(317.6 / elevatorCount * i)
     }
@@ -17,7 +16,7 @@ const Elevators = ({ elevatorCount, completedSystem }) => {
                             key={qty}
                             style={{
                                 left: `${qty - 5}px`,
-                                width: `${317.6/elevatorCount}px`
+                                width: `${317.6 / elevatorCount}px`,
                             }}
 
                         >
