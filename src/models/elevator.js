@@ -148,7 +148,7 @@ export default class Elevator {
 
                 let direction = request.button.direction === 1 ? 'up' : 'down'
                 let button = document.getElementById(`${direction}-${level}`)
-                button.classList.remove(`active`)
+                if (button) button.classList.remove(`active`)
             }
         }
 
@@ -158,7 +158,7 @@ export default class Elevator {
                 this.stops.insert(index, 'dropoff', dropOff.floor)
             } else {
                 let button = document.getElementById(`button-${dropOff.floor}-${this.id}`)
-                button.classList.remove("active-floor")
+                if (button) button.classList.remove("active-floor")
             }
             // console.log(`stops updated at index ${index}`, this.stops)
         }

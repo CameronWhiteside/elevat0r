@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react"
 import { arrayMoveImmutable } from 'array-move';
 import SortableList from './optimizationList/SortableList.js';
 import ToggleItem from "./controlledInputs/ToggleItem.js"
 import './SystemGenerator.css'
 import System from "../../../models/system.js";
-import Controls from "./panels/ControlPanel.js";
+import Controls from "./buttonPanels/ControlPanel.js";
 
 
 const SystemGenerator = ({

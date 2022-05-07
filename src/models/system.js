@@ -23,7 +23,7 @@ export default class System {
             this.intervals.push(setInterval(() => {
                 elevator.updatePosition()
                 let pageElevator = document.getElementById(`elevator-${i}`)
-                pageElevator.style.bottom = `${ elevator.position / floorCount * 600 }px`;
+                if(pageElevator) pageElevator.style.bottom = `${elevator.position / floorCount * 600}px`;
             }, 1000 / tick))
         }
 
@@ -37,7 +37,7 @@ export default class System {
         this.speed = speed;
         this.startTime = Date.now();
         this.requests = []
-        }
+    }
 
     setSpeed(newSpeed) {
         this.speed = newSpeed
@@ -85,13 +85,13 @@ export default class System {
 
     getNearestFloorMatrix() {
         let matrix = []
-        for (let i = 0; i < this.floorCount; i++) {
+        for (let i = 0; i < this.floors.length; i++) {
             let row = []
             for (let j = 0; j < this.elevators.length; j++) {
                 let elevator = this.elevators[j]
                 if (Math.floor(elevator.position + 0.5) === i) {
                     let destination = i;
-                    if (elevator.stops.head.level) {
+                    if (elevator.stops.head && elevator.stops.head.level) {
                         destination = elevator.stops.head.level
                     }
                     row.push(destination.toString())
@@ -103,8 +103,6 @@ export default class System {
             }
             matrix.push(row)
         }
+        return matrix
     }
 }
-
-
-// console.log(myBuilding)
