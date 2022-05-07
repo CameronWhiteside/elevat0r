@@ -39,8 +39,8 @@ const SpecMenu = ({
         let energyRank = 5 - ranks.indexOf('Energy Efficiency')
         let waitWeight = waitRank * 10
         let changesWeight = changesRank * 10
-        let stopsWeight = stopsRank * 10
-        let energyWeight = energyRank * 10
+        let stopsWeight = stopsRank * 75
+        let energyWeight = energyRank * 200
         let weights = {
             waitWeight,
             stopsWeight,

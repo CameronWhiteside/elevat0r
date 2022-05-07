@@ -1,7 +1,8 @@
 export class Stop {
-    constructor(type, level) {
+    constructor(type, level, direction) {
         this.type = type
         this.level = level
+        this.direction = direction
         this.previous = null
         this.next = null
     }
@@ -15,8 +16,8 @@ export class StopList {
     }
 
     // Insert node at end of the list
-    append(type, level) {
-        let newNode = new Stop(type, level);
+    append(type, level, direction) {
+        let newNode = new Stop(type, level, direction);
         if (!this.length) {
             this.head = newNode
             this.length = 1
@@ -30,8 +31,8 @@ export class StopList {
     }
 
     // Insert node at the start of the list
-    prepend(type, level) {
-        let newNode = new Stop(type, level);
+    prepend(type, level, direction) {
+        let newNode = new Stop(type, level, direction);
         if (!this.length) {
             this.head = newNode
             this.length = 1
@@ -47,7 +48,7 @@ export class StopList {
     }
 
     // Insert node at a given index
-    insert(index, type, level) {
+    insert(index, type, level, direction) {
         console.log('calling insert at index ', index)
         if (!Number.isInteger(index) || index < 0 || index > this.length + 1) {
             console.log(`Invalid index.`);
@@ -56,18 +57,18 @@ export class StopList {
 
         // If index is 0, prepend
         if (index === 0) {
-            this.prepend(type, level);
+            this.prepend(type, level, direction);
             return this;
         }
 
         // If index is equal to this.length, append
         if (index === this.length) {
-            this.append(type, level);
+            this.append(type, level, direction);
             return this;
         }
 
         // Reach the node at that index
-        let newNode = new Stop(type, level);
+        let newNode = new Stop(type, level, direction);
         let previousNode = this.head;
 
         for (let i = 0; i < index - 1; i++) {
@@ -92,15 +93,24 @@ export class StopList {
             return this;
         }
 
+        if (this.length === 1) {
+            this.tail = null
+            this.head = null
+            this.length--
+            return this
+        }
+
         // Remove head
         if (index === 0) {
-            this.head = this.head.next;
-            if (!this.head) this.head = {}
-            this.head.previous = null;
             this.length--;
-            if (!this.length) {
+            if (this.length <= 0) {
                 this.tail = null
                 this.head = null
+                this.length = 0
+            } else {
+                console.log(this)
+                this.head = this.head.next;
+                this.head.previous = null;
             }
             return this;
         }
@@ -130,6 +140,7 @@ export class StopList {
         nextNode.previous = previousNode;
 
         this.length--;
+
         if (!this.length) {
             this.tail = null
             this.head = null

@@ -120,7 +120,7 @@ export default class Elevator {
         // console.log(request)
         let { waitWeight, stopsWeight, changesWeight, energyWeight } = this.weights
         let optimalStop = this.calculateStopAddition(request)
-        console.log({optimalStop})
+        // console.log({optimalStop})
             let result = [
                     this.calculateWaitTime(optimalStop) * waitWeight,
                     this.calculateStopsToDropoff(optimalStop) * stopsWeight,
@@ -128,65 +128,88 @@ export default class Elevator {
                     this.calculateWaitTime(optimalStop) * energyWeight
             ].reduce((a, e) => a + e)
 
-            console.log(result)
+            // console.log(result)
             return result
         }
 
         assignRequest(request) {
             let { index } = this.calculateStopAddition(request)
-            this.stops.insert(index, 'pickup', request.floor.level)
+            this.stops.insert(index, 'pickup', request.floor.level, request.button.direction)
         }
 
         assignDropOff(dropOff) {
             let { index } = this.calculateStopAddition(dropOff)
-            console.log(dropOff)
-            this.stops.insert(index, 'pickup', dropOff.floor)
+            // console.log(dropOff)
+            this.stops.insert(index, 'dropoff', dropOff.floor)
             // console.log(`stops updated at index ${index}`, this.stops)
         }
 
-        updatePosition() {
-             // console.log(this.stops.head)
-            if (this.stops.head && this.stops.head.level) {
+    updatePosition() {
+
+        const updateNextFloor = () => {
+            let nextStopText = document.getElementById(`next-stop-${this.id}`)
+            let nextFloor = 'None'
+            if (this.stops.head && this.stops.head.level !== undefined) {
+                nextFloor = this.stops.head.level
+            }
+            nextStopText.innerHTML = nextFloor
+        }
+
+        updateNextFloor()
+
+        if (this.stops.head && this.stops.head.level !== undefined) {
                 //check to see if already at nextPosition
                 if (this.position === this.stops.head.level) {
+                    let level = this.position
+                    if (this.stops.head.type === 'dropoff') {
+                        let button = document.getElementById(`button-${level}-${this.id}`)
+                        button.classList.remove('active-floor')
+                    } else {
+                        let direction = (this.stops.head.direction > 0) ? 'up' : 'down'
+                        let button = document.getElementById(`${direction}-${level}`)
+                        if (button) {
+                            button.classList.remove(`active`)
+                        }
+                    }
                     if (this.direction !== 0) {
-                        //specify speed to zero
+                        //if elevator was in motion
                         this.direction = 0
                         //pause based on stop type
                         let delay = 0
                         if (this.stops.head.type === 'dropoff') {
                             delay = this.dropOffDelay;
                         } else if (this.stops.head.type === 'pickup') {
-                            delay = this.dropOffDelay;
-                            console.log('delay', delay)
+                            delay = this.pickUpDelay;
                         }
 
                         setTimeout(() => {
-                            console.log(`scheduling next step in ${delay} delay`)
                             this.stops.remove(0)
-                            console.log(this.stops)
-                            this.direction = 0
-                            if (this.stops.head && this.stops.head.level) {
+                            //calculate next direction
+                            if (this.stops.head && this.stops.head.level !== undefined) {
                                 this.direction = Math.abs(this.stops.head.level - this.position) / (this.stops.head.level - this.position)
                             }
                         }, delay * 1000)
 
+                    } else {
+                        this.direction = 0
                     }
                 } else {
-                    console.log('not there yet')
 
                     let distanceToNext = this.stops.head.level - this.position
                     if (distanceToNext) {
                         this.direction = Math.abs(distanceToNext) / distanceToNext
                     }
                     let projectedDistance = Math.abs(distanceToNext) / distanceToNext * this.speed / this.tick
+
                     if (Math.abs(projectedDistance) > Math.abs(distanceToNext)) {
                         this.position = this.stops.head.level
                     } else {
                         this.position += projectedDistance
+                        console.log(this.position)
                     }
 
                 }
+            } else {
             }
             return this.position
         }

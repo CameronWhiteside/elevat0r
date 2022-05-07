@@ -60,7 +60,6 @@ export default class System {
 
         let chosenElevator = rankings.reduce((acc, el) => {
 
-            console.log(`Comparing ${acc.score} and ${el.score}`)
             if (acc.score <= el.score) {
                 return acc
             } else {
@@ -68,7 +67,6 @@ export default class System {
             }
         }).elevator
 
-        console.log(`Thats for elevator ${chosenElevator.id}.`)
 
         chosenElevator.assignRequest(request)
 
