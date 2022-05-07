@@ -19,7 +19,6 @@ export default class Elevator {
     }
 
     calculateStopAddition(request) {
-        console.log(request)
 
         let intendedDirection = 0
 
@@ -155,18 +154,11 @@ export default class Elevator {
 
         assignDropOff(dropOff) {
             let { index } = this.calculateStopAddition(dropOff)
-            console.log({index})
-            // console.log(dropOff)
             if (this.position !== dropOff.floor) {
                 this.stops.insert(index, 'dropoff', dropOff.floor)
             } else {
                 let button = document.getElementById(`button-${dropOff.floor}-${this.id}`)
-                console.log(`${dropOff.floor}-${this.id}`)
-                console.log(button.classList)
                 button.classList.remove("active-floor")
-                button.classList.remove("active-floor")
-                button.classList.remove("active-floor")
-                console.log(button.classList)
             }
             // console.log(`stops updated at index ${index}`, this.stops)
         }

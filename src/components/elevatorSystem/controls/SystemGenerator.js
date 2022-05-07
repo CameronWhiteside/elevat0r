@@ -33,13 +33,13 @@ const SystemGenerator = ({
     };
 
     const onGenerateSystem = () => {
-        let waitRank = 5 - ranks.indexOf('Shortest Wait Time')
-        let changesRank = 5 - ranks.indexOf('Minimal Direction Change')
-        let stopsRank = 5 - ranks.indexOf('Fewest Stops')
-        let energyRank = 5 - ranks.indexOf('Energy Efficiency')
-        let waitWeight = waitRank * 10
-        let changesWeight = changesRank * 10
-        let stopsWeight = stopsRank * 75
+        let waitRank = 4 - ranks.indexOf('Shortest Wait Time')
+        let changesRank = 4 - ranks.indexOf('Minimal Direction Change')
+        let stopsRank = 4 - ranks.indexOf('Fewest Stops')
+        let energyRank = 4 - ranks.indexOf('Energy Efficiency')
+        let waitWeight = waitRank * 150
+        let changesWeight = changesRank * 150
+        let stopsWeight = stopsRank * 170
         let energyWeight = energyRank * 200
         let weights = {
             waitWeight,

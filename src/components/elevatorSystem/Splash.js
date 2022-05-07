@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import SpecMenu from './controls/SystemGenerator.js';
+import SystemGenerator from './controls/SystemGenerator.js';
 import DisplayArea from './buildingAnimation/DisplayArea.js'
 import './Splash.css'
 
@@ -33,10 +33,10 @@ const Splash = () => {
             <div className='left-col column'>
             <header className='title-container'>
                 <div className='title-image'/>
-                <h1 className='hidden'>Elevator Simulator</h1>
+                <h1 className='hidden'>Elevat0r</h1>
                 <h3>a dynamic lift simulator created by Cameron Whiteside</h3>
                 </header>
-                <SpecMenu
+                <SystemGenerator
                     floorCount={floorCount}
                     setFloorCount={setFloorCount}
                     elevatorCount={elevatorCount}

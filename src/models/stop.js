@@ -49,7 +49,6 @@ export class StopList {
 
     // Insert node at a given index
     insert(index, type, level, direction) {
-        console.log('calling insert at index ', index)
         if (!Number.isInteger(index) || index < 0 || index > this.length + 1) {
             console.log(`Invalid index.`);
             return this;
@@ -108,7 +107,6 @@ export class StopList {
                 this.head = null
                 this.length = 0
             } else {
-                console.log(this)
                 this.head = this.head.next;
                 this.head.previous = null;
             }
