@@ -130,7 +130,7 @@ export default class Elevator {
                     this.calculateWaitTime(optimalStop) * waitWeight,
                     this.calculateStopsToDropoff(optimalStop) * stopsWeight,
                     this.calculateDirectionChanges(optimalStop) * changesWeight,
-                    this.calculateWaitTime(optimalStop) * energyWeight
+                    this.calculateEnergyCost(optimalStop) * energyWeight
             ].reduce((a, e) => a + e)
 
             // console.log(result)

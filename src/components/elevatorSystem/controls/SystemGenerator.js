@@ -36,10 +36,10 @@ const SystemGenerator = ({
         let changesRank = 4 - ranks.indexOf('Minimal Direction Change')
         let stopsRank = 4 - ranks.indexOf('Fewest Stops')
         let energyRank = 4 - ranks.indexOf('Energy Efficiency')
-        let waitWeight = waitRank * 150
-        let changesWeight = changesRank * 150
-        let stopsWeight = stopsRank * 170
-        let energyWeight = energyRank * 200
+        let waitWeight = waitRank
+        let changesWeight = changesRank
+        let stopsWeight = stopsRank
+        let energyWeight = energyRank
         let weights = {
             waitWeight,
             stopsWeight,

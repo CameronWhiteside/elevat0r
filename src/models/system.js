@@ -1,6 +1,6 @@
 import Elevator from './elevator.js'
 import Floor from './floor.js'
-import { Request, DropOff } from './request.js'
+import { Request } from './request.js'
 
 export default class System {
     constructor(
